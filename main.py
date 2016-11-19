@@ -22,15 +22,17 @@ data = []
 def main():
     img_core = load_image("./images/initial.png")
     img_gray = image_gray(img_core)
+    img_bin = image_bin(img_gray)
+    img_bin = cv2.resize(img_bin, (240, 240))
     for color in colors:
         for piece in pieces:
             path = './images/'+color+'/'+piece+'.png'
             label = color[0] + piece
             component = cv2.imread(path)
+            component = cv2.resize(component, (30, 30))
             vector = np.array(component).ravel()
             data.append({'label':label, 'sample':vector})
 
-    img_bin = image_bin(img_gray)
     EigenPieceChess = PCAModel()
     EigenPieceChess.train(data)
 
