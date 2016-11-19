@@ -2,8 +2,7 @@ from board import ChessBoard
 
 
 def main():
-    board = ChessBoard('./images/initial.png')
-
+    board = ChessBoard('./images/tests/5.png')
     for column in board.get_board():
         print(column)
 
