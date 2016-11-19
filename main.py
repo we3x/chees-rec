@@ -1,6 +1,5 @@
 import cv2
 from model import PCAModel
-from matplotlib import pyplot as plt
 import numpy as np
 
 
@@ -33,8 +32,7 @@ def main():
 
     img_bin = image_bin(img_gray)
     EigenPieceChess = PCAModel()
-    cv2.imwrite('nn.png', img_bin)
-
+    EigenPieceChess.train(data)
 
 if __name__ == "__main__":
     main()
