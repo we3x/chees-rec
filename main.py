@@ -15,7 +15,7 @@ def image_bin(image_gs):
     ret, image_bin = cv2.threshold(image_gs, 130, 255, cv2.THRESH_BINARY)
     return image_bin
 
-pieces = ["king", "pawn", "knight", "bishop", "queen", "rook"]
+pieces = ["rook", "knight", "bishop", "king", "queen", "pawn"]
 colors = ['black', 'white']
 data = []
 board = [
@@ -52,7 +52,7 @@ def main():
         for j in range(8):
             vector = np.array(img_bin[i*30:(i+1)*30, j*30:(j+1)*30]).ravel()
             label, res = EigenPieceChess.classify(vector)
-            board[i][j] = pieces.index(label)
+            board[i][j] = pieces.index(label) + 1
             if label == "pawn":
                 if res > 1000:
                     board[i][j] = 0
