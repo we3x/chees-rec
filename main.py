@@ -17,7 +17,7 @@ def image_bin(image_gs):
     return image_bin
 
 
-def get_piece_color(image):
+def get_piece_color(image, label):
     B = 0
     W = 0
     color = 0
@@ -28,11 +28,13 @@ def get_piece_color(image):
             B = B + 1
     P = math.ceil(B/(B+W)*100)
     if P >= 25:
-        color = 1
-    elif P >= 6:
         color = -1
+    elif P >= 6:
+        color = 1
     else:
         color = 0
+    if label == "queen" and P < 30:
+        color = 1
     return color
 
 pieces = ["rook", "knight", "bishop", "king", "queen", "pawn"]
@@ -73,7 +75,7 @@ def main():
         for j in range(8):
             vector = np.array(img_bin[i*30:(i+1)*30, j*30:(j+1)*30]).ravel()
             label, res = EigenPieceChess.classify(vector)
-            board[i][j] = (pieces.index(label) + 1)*get_piece_color(vector)
+            board[i][j] = (pieces.index(label)+1)*get_piece_color(vector, label)
     for column in board:
         print(column)
 
