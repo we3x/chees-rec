@@ -1,1 +1,1 @@
-# chees-rec
+# chess-rec
