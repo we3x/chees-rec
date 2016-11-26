@@ -72,7 +72,6 @@ class ChessBoard(object):
         return data
 
     def recognize(self):
-
         for i in range(8):
             for j in range(8):
                 vector = np.array(self.image_bin[i*30:(i+1)*30, j*30:(j+1)*30]).ravel()
